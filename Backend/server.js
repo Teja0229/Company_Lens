@@ -16,13 +16,19 @@ const scrapeJobs = new Map();
 
 // Allow the static frontend to be previewed from a local development server
 // while keeping the API on its configured Express port.
+// Allow local development and the deployed Vercel frontend
 app.use((req, res, next) => {
   const origin = req.headers.origin || "";
-  if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)) {
+
+  if (
+    /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin) ||
+    origin === "https://companylens-frontend.vercel.app"
+  ) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
   }
+
   if (req.method === "OPTIONS") return res.sendStatus(204);
   next();
 });
