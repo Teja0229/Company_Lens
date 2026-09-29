@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
   if (
     /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin) ||
-    origin === "https://companylens-frontend.vercel.app"
+    origin === "https://companymaps.vercel.app"
   ) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
