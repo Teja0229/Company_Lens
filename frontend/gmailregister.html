@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create account | CompanyLens</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="theme.js"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="crm-header">
+      <a class="crm-brand" href="index.html" title="CompanyLens Home">
+        <img src="logo.png" alt="CompanyLens Logo" class="crm-brand-logo" />CompanyLens
+      </a>
+      <div class="crm-header-nav">
+        <a class="crm-header-link" href="index.html" title="Go to home page">
+          <i class="bx bx-home-alt"></i><span>Home</span>
+        </a>
+        <span class="crm-header-text">Already a member?</span>
+        <a class="crm-header-btn" href="login.html" title="Sign in">
+          <i class="bx bx-log-in"></i><span>Sign in</span>
+        </a>
+      </div>
+    </header>
+    <main class="auth-page">
+      <section class="auth-copy">
+        <span class="eyebrow"
+          ><i class="bx bx-user-plus"></i> Start your workspace</span
+        >
+        <h1>Build a better company research process.</h1>
+        <p>
+          Create your account to organize the businesses your team tracks and
+          turn research into useful data.
+        </p>
+        <div class="crm-points">
+          <div class="crm-point">
+            <i class="bx bx-folder-open"></i>Save companies and research notes
+          </div>
+          <div class="crm-point">
+            <i class="bx bx-group"></i>Made for focused teams
+          </div>
+          <div class="crm-point">
+            <i class="bx bx-lock"></i>Secure account management
+          </div>
+        </div>
+      </section>
+      <section class="auth-card">
+        <h2>Create your account</h2>
+        <p>Use your work email to get started.</p>
+        <form id="registerForm">
+          <div class="field">
+            <label for="name">Full name</label>
+            <div class="control">
+              <i class="bx bx-user"></i
+              ><input
+                id="name"
+                type="text"
+                placeholder="Your full name"
+                autocomplete="name"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <div class="control">
+              <i class="bx bx-envelope"></i
+              ><input
+                id="email"
+                type="email"
+                placeholder="name@company.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="password">Create password</label>
+            <div class="control">
+              <i class="bx bx-lock-alt"></i
+              ><input
+                id="password"
+                type="password"
+                placeholder="At least 6 characters"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirm-password">Confirm password</label>
+            <div class="control">
+              <i class="bx bx-check-shield"></i
+              ><input
+                id="confirm-password"
+                type="password"
+                placeholder="Repeat your password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+          </div>
+          <button class="primary" id="registerBtn" type="submit">
+            Create workspace account
+          </button>
+          <p class="message" id="status" aria-live="polite"></p>
+        </form>
+        <div class="divider">or continue with</div>
+        <div class="provider-row social-provider-row" aria-label="Social sign-in options">
+          <button class="provider icon-provider google-provider" id="googleLoginBtn" data-provider="google" type="button" aria-label="Continue with Google" title="Continue with Google"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29A11.96 0 0 0 0 12c0 1.93.46 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.94 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg></button>
+          <button class="provider icon-provider" data-provider="github" type="button" aria-label="Continue with GitHub" title="Continue with GitHub"><i class="bx bxl-github" aria-hidden="true"></i></button>
+          <button class="provider icon-provider" data-provider="facebook" type="button" aria-label="Continue with Facebook" title="Continue with Facebook"><i class="bx bxl-facebook" aria-hidden="true"></i></button>
+          <button class="provider icon-provider" data-provider="instagram" type="button" aria-label="Continue with Instagram" title="Continue with Instagram"><i class="bx bxl-instagram" aria-hidden="true"></i></button>
+          <button class="provider icon-provider" data-provider="linkedin" type="button" aria-label="Continue with LinkedIn" title="Continue with LinkedIn"><i class="bx bxl-linkedin" aria-hidden="true"></i></button>
+        </div>
+        <p class="account-link">
+          Already have an account?
+          <a href="login.html">Sign in</a>
+        </p>
+        <p class="account-link">
+          <a href="index.html"><i class="bx bx-left-arrow-alt"></i> Back to home</a>
+        </p>
+      </section>
+    </main>
+    <script type="module">
+      import { signUp, signInWithGoogle, signInWithOAuth } from "./api.js";
+      const form = document.getElementById("registerForm"),
+        button = document.getElementById("registerBtn"),
+        status = document.getElementById("status");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const name = document.getElementById("name").value.trim(),
+          email = document.getElementById("email").value.trim(),
+          password = document.getElementById("password").value,
+          confirmPassword = document.getElementById("confirm-password").value;
+        status.className = "message";
+        if (password !== confirmPassword) {
+          status.textContent = "Passwords do not match.";
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "Creating account…";
+        const { data, error } = await signUp({ email, password, fullName: name });
+        if (error) {
+          status.textContent = error.message;
+          button.disabled = false;
+          button.textContent = "Create workspace account";
+          return;
+        }
+        window.location.href = data?.session ? "dashboard.html" : "login.html?registered=1";
+      });
+
+      document.querySelectorAll("[data-provider]").forEach((providerButton) =>
+        providerButton.addEventListener("click", async () => {
+          const provider = providerButton.dataset.provider;
+          if (provider === "instagram") {
+            status.textContent = "Instagram sign-in needs a separate Meta OAuth setup.";
+            return;
+          }
+          status.textContent = "";
+          status.className = "message";
+          providerButton.disabled = true;
+          providerButton.setAttribute("aria-busy", "true");
+          const { data, error } = await (provider === "google"
+            ? signInWithGoogle()
+            : signInWithOAuth(provider));
+          if (error) {
+            status.textContent = error.message;
+            providerButton.disabled = false;
+            providerButton.removeAttribute("aria-busy");
+            return;
+          }
+          window.location.assign(data.url);
+        })
+      );
+    </script>
+  </body>
+</html>

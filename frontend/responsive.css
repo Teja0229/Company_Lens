@@ -1,0 +1,258 @@
+/* Shared responsive behavior for every screen size. */
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: clip; }
+body { min-width: 0; overflow-x: clip; }
+body.dashboard-page,
+html:has(body.dashboard-page) {
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+img, svg, video, canvas { max-width: 100%; height: auto; }
+button, input, select, textarea { max-width: 100%; font: inherit; }
+.app-shell, .main-area, .view, .data-card, .form-card, .topbar, .welcome, .directory-hero { min-width: 0; }
+.main-area { width: 100%; }
+.table-scroll { width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-inline: contain; }
+.directory-search-fields > *, .form-grid > *, .metrics > *, .analytics-overview-grid > * { min-width: 0; }
+
+/* Wide monitors remain comfortable to read without stretching controls too far. */
+@media (min-width: 1500px) {
+  .main-area > .view { max-width: 1560px; margin-right: auto; margin-left: auto; }
+}
+
+/* Laptops and desktops keep compact inline search controls. */
+@media (max-width: 900px) {
+  .directory-search-heading { align-items: flex-start; }
+  .data-footer, .form-actions, .profile-actions { flex-wrap: wrap; }
+}
+
+@media (max-width: 760px) {
+  .theme-toggle { top: 12px; right: 12px; }
+  .crm-header { min-height: 56px; }
+  .crm-brand { font-size: 14px; }
+  .auth-page { width: min(100% - 28px, 440px); }
+  .auth-copy h1 { font-size: clamp(28px, 9vw, 34px); }
+  .auth-card { width: 100%; }
+  .profile-page-topbar { align-items: flex-start; flex-direction: column; }
+  .profile-page-topbar .secondary-button { width: auto; }
+  .profile-page-heading { margin-top: 28px; }
+  .profile-page-heading h1 { font-size: clamp(25px, 8vw, 32px); overflow-wrap: anywhere; }
+  .standalone-profile-shell { padding: 20px 16px 36px; }
+  .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-scroll table { min-width: 520px; }
+  .main-area { padding: 18px 16px 32px; }
+  .directory-search-fields { flex-direction: column; gap: 8px; margin-top: 12px; }
+  .directory-search-fields .form-field { width: 100%; flex: 1 1 100%; }
+  .directory-search-fields .primary-button { width: 100%; height: 38px; }
+  .directory-search-heading > i { flex: 0 0 auto; }
+  .data-head, .data-footer, .welcome, .directory-hero { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .data-footer .pager { width: 100%; }
+  .data-footer .pager button { flex: 1 1 0; }
+  .companies-table { min-width: 560px; }
+  #companiesView .companies-table th:last-child,
+  #companiesView .companies-table td:last-child { min-width: 132px; }
+}
+
+@media (max-width: 600px) {
+  .topbar { gap: 10px; margin-bottom: 18px; }
+  .breadcrumb { max-width: 55vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+  .directory-hero, .form-card { padding: 18px; border-radius: 12px; }
+  .welcome h1 { font-size: 22px; }
+  .welcome p, .profile-page-heading p { font-size: 13px; }
+  .form-actions > *, .profile-actions > * { width: 100%; justify-content: center; }
+  .employee-list, .feedback-list { padding-right: 0; padding-left: 0; }
+  .topbar-actions > * { flex-shrink: 0; }
+  .global-search { min-width: 0; }
+  .form-card, .data-card { width: 100%; }
+}
+
+@media (max-width: 380px) {
+  .theme-toggle { width: 36px; height: 36px; font-size: 16px; }
+  .brand-mark { width: 30px; height: 30px; }
+  .main-area { padding-right: 12px; padding-left: 12px; }
+  .form-card, .directory-hero { padding: 15px; }
+  .directory-search-heading h2 { font-size: 20px; }
+  .directory-search-heading p { font-size: 12px; }
+  .primary-button, .secondary-button { width: 100%; }
+  .mobile-menu-button span { display: none; }
+}
+
+.mobile-menu-button {
+  display: none !important;
+}
+
+/* Sidebar and app layout: pinned permanently on the left side.
+   The sidebar stays fixed on the left and never moves to top or bottom.
+   Only the main area scrolls vertically. */
+.app-shell {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  overflow: hidden;
+  width: 100%;
+}
+.sidebar {
+  height: 100vh;
+  height: 100dvh;
+  width: 240px;
+  position: relative;
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+.main-area {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Minimized / narrow window (<= 960px): sidebar stays on the left as a compact icon rail */
+@media (max-width: 960px) {
+  .app-shell {
+    grid-template-columns: 68px minmax(0, 1fr);
+  }
+  .sidebar {
+    width: 68px;
+    padding: 16px 8px;
+    align-items: center;
+  }
+  .sidebar .brand {
+    justify-content: center;
+    padding: 0 0 22px;
+  }
+  .sidebar .brand > span:last-child,
+  .workspace-label,
+  .sidebar-footer {
+    display: none !important;
+  }
+  .sidebar .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+  }
+  .sidebar .nav button {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  .sidebar .nav button span {
+    display: none !important;
+  }
+  .sidebar .nav button i {
+    font-size: 21px;
+    margin: 0;
+  }
+  .sidebar .sidebar-logout {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 10px !important;
+    margin-top: auto;
+  }
+  .sidebar .sidebar-logout span {
+    display: none !important;
+  }
+  .sidebar .sidebar-logout i {
+    font-size: 20px;
+    margin: 0;
+  }
+  .profile-text {
+    display: none !important;
+  }
+  .breadcrumb {
+    max-width: 240px;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .breadcrumb-current {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Mobile screens (<= 540px): ultra-compact left rail so navigation stays on the side */
+@media (max-width: 540px) {
+  .app-shell {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+  .sidebar {
+    width: 56px;
+    padding: 12px 4px;
+  }
+  .sidebar .brand-mark {
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+  .sidebar .nav button,
+  .sidebar .sidebar-logout {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+  .sidebar .nav button i,
+  .sidebar .sidebar-logout i {
+    font-size: 19px;
+  }
+  .main-area {
+    padding: 14px 10px 28px;
+  }
+  .topbar {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .breadcrumb {
+    max-width: 150px;
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  .breadcrumb strong {
+    display: none;
+  }
+  .breadcrumb-sep {
+    display: none;
+  }
+  .breadcrumb-current {
+    max-width: 110px;
+  }
+}
+
+/* The same theme control used on the home page, available site-wide. */
+.global-theme-menu { position: fixed; z-index: 1000; right: 20px; bottom: 20px; }
+.global-theme-button { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; padding: 0; border: 1px solid #e4e7ed; border-radius: 50%; background: #fff; color: #151a23; box-shadow: 0 5px 18px rgba(21, 40, 62, .14); cursor: pointer; font: 600 17px Inter, sans-serif; }
+.global-theme-button .theme-label { display: none; }
+.global-theme-options { position: absolute; right: 0; bottom: calc(100% + 6px); display: none; min-width: 140px; padding: 6px; border: 1px solid #e4e7ed; border-radius: 9px; background: #fff; box-shadow: 0 6px 20px rgba(21, 26, 35, .14); }
+.global-theme-menu.open .global-theme-options { display: block; }
+.global-theme-options button { display: block; width: 100%; padding: 8px 10px; border: 0; border-radius: 7px; background: transparent; color: #5b6473; cursor: pointer; font: 600 13px Inter, sans-serif; text-align: left; }
+.global-theme-options button:hover { background: #eef0f4; }
+.global-theme-options button.active { background: #eaefff; color: #28409f; }
+html[data-theme="dark"] .global-theme-button, html[data-theme="dark"] .global-theme-options { border-color: #262b38; background: #171b25; color: #eef0f4; }
+html[data-theme="dark"] .global-theme-options button { color: #a7adba; }
+html[data-theme="dark"] .global-theme-options button:hover { background: #1e222d; }
+html[data-theme="dark"] .global-theme-options button.active { background: #1e2740; color: #8fa4ec; }
+.mkt-nav .theme-menu { position: fixed; z-index: 1000; right: 20px; bottom: 20px; }
+.mkt-nav .theme-btn { justify-content: center; width: 42px; height: 42px; padding: 0; border-radius: 50%; font-size: 17px; }
+.mkt-nav #themeLabel { display: none; }
+.mkt-nav .theme-dropdown { top: auto; right: 0; bottom: calc(100% + 6px); }
+@media (max-width: 760px) { .global-theme-menu, .mkt-nav .theme-menu { right: 12px; bottom: 14px; } .global-theme-button, .mkt-nav .theme-btn { width: 39px; height: 39px; } }

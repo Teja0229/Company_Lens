@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Profile | CompanyLens</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="theme.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  </head>
+  <body class="company-profile-page">
+    <main class="standalone-profile-shell">
+      <header class="profile-page-topbar">
+        <a class="profile-product-name" href="dashboard.html"><img src="logo.png" alt="CompanyLens Logo" class="brand-logo" /> CompanyLens</a>
+        <a class="secondary-button" href="dashboard.html"><i class="bx bx-arrow-back"></i> Back to companies</a>
+      </header>
+
+      <section class="profile-page-heading">
+        <span class="eyebrow"><i class="bx bx-id-card"></i> Company profile</span>
+        <h1 id="companyName">Loading company…</h1>
+        <p>Company contact information and Google Maps location.</p>
+      </section>
+
+      <section class="form-card profile-summary-card">
+        <div class="profile-card-heading">
+          <div class="profile-company-mark" id="companyMark" aria-hidden="true">CE</div>
+          <div><h2 id="companyProfileName">Company profile</h2><p>Official company information</p></div>
+        </div>
+        <div id="companyDetails" class="details-grid"></div>
+        <p id="profileMessage" class="message"></p>
+      </section>
+
+      <section class="form-card profile-summary-card">
+        <div class="section-heading">
+          <div><h2>Employees</h2><p>Employee links are included only when published by the company on its official website.</p></div>
+          <span class="source-badge"><i class="bx bx-check-shield"></i> Official source</span>
+        </div>
+        <div id="employeeList" class="employee-list"></div>
+      </section>
+
+      <section class="form-card profile-summary-card hiring-updates-card">
+        <div class="section-heading">
+          <div><h2>Hiring updates</h2><p>Open roles published on the company website in the last 3 days.</p></div>
+          <span class="source-badge"><i class="bx bx-time-five"></i> Last 3 days</span>
+        </div>
+        <div id="hiringUpdates" class="hiring-updates"></div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { getCompanyDetails, getCompanyProfile, getUser } from "./api.js";
+
+      const escapeHtml = (value) => String(value ?? "")
+        .replaceAll("&", "&amp;").replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+      const link = (value, label) => value
+        ? `<a href="${escapeHtml(value)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+        : "—";
+      const detail = (label, value) => `<div class="detail-item"><span>${label}</span><strong>${value || "N/A"}</strong></div>`;
+      const formatPostedDate = (value) => new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short" }).format(new Date(value));
+
+      function initials(name) {
+        return String(name || "?").trim().split(/\s+/).slice(0, 2)
+          .map((part) => part[0]).join("").toUpperCase();
+      }
+
+      function renderProfile(company, employees, hiringUpdates) {
+        document.title = `${company.company_name} | CompanyLens`;
+        document.getElementById("companyName").textContent = company.company_name;
+        document.getElementById("companyProfileName").textContent = company.company_name;
+        document.getElementById("companyMark").textContent = initials(company.company_name);
+        document.getElementById("companyDetails").innerHTML = [
+          detail("Rating", escapeHtml(company.rating || "N/A")),
+          detail("Company email", escapeHtml(company.gmail || "N/A")),
+          detail("Company phone number", escapeHtml(company.phone || "N/A")),
+          detail("Company website", link(company.website, "Visit website")),
+          detail("Google Maps", link(company.google_maps_link, "Open Google Maps")),
+        ].join("");
+        const employeeRows = employees.length ? employees : [{ name: "N/A", linkedin_url: "" }];
+        document.getElementById("employeeList").innerHTML = `<div class="table-scroll"><table class="employee-table"><thead><tr><th>Employee name</th><th>LinkedIn link</th></tr></thead><tbody>${employeeRows.map((employee) => `<tr><td>${escapeHtml(employee.name || "N/A")}</td><td>${link(employee.linkedin_url, "Open LinkedIn")}</td></tr>`).join("")}</tbody></table></div>`;
+        document.getElementById("hiringUpdates").innerHTML = hiringUpdates.length
+          ? hiringUpdates.map((update) => `<article class="hiring-update"><div><h3>${escapeHtml(update.role)}</h3><p>${escapeHtml(update.experience || "Experience not specified")}</p><span>Posted ${formatPostedDate(update.posted_at)}</span></div><a class="secondary-button" href="${escapeHtml(update.apply_url)}" target="_blank" rel="noopener noreferrer">Apply <i class="bx bx-link-external"></i></a></article>`).join("")
+          : '<p class="empty-insight">No hiring updates have been published from the company website in the last 3 days.</p>';
+      }
+
+      const id = new URLSearchParams(window.location.search).get("id");
+      const googleMapsLink = new URLSearchParams(window.location.search).get("google_maps_link");
+      const { data: userData, error: userError } = await getUser();
+      if (userError || !userData?.user) {
+        window.location.href = "login.html?message=signin";
+      } else if (!id && !googleMapsLink) {
+        document.getElementById("profileMessage").textContent = "No company profile was selected.";
+      } else {
+        const { data, error } = id
+          ? await getCompanyDetails(id)
+          : await getCompanyProfile(googleMapsLink);
+        if (error) {
+          document.getElementById("profileMessage").textContent = `Unable to load this company: ${error.message}`;
+          document.getElementById("companyName").textContent = "Company profile unavailable";
+        } else {
+          renderProfile(data.company, data.employees || [], data.hiringUpdates || []);
+        }
+      }
+    </script>
+  </body>
+</html>

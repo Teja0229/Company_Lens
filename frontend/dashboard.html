@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CompanyLens | Workspace</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="theme.js"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="dashboard-page">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="logo.png" alt="CompanyLens Logo" class="brand-logo" />
+          <span>CompanyLens</span>
+        </div>
+        <button id="mobileMenuBtn" class="mobile-menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false">
+          <i class="bx bx-menu"></i><span>Menu</span>
+        </button>
+        <p class="workspace-label">Workspace</p>
+        <nav class="nav" aria-label="Dashboard navigation">
+          <button class="active" data-view="overviewView" title="Dashboard">
+            <i class="bx bx-grid-alt"></i><span>Dashboard</span>
+          </button>
+          <button data-view="companiesView" title="Companies">
+            <i class="bx bx-buildings"></i><span>Companies</span>
+          </button>
+          <button data-view="analyticsView" title="Analytics">
+            <i class="bx bx-line-chart"></i><span>Analytics</span>
+          </button>
+          <button data-view="reportsView" title="Reports">
+            <i class="bx bx-bar-chart-alt-2"></i><span>Reports</span>
+          </button>
+          <button data-view="registerView" title="Register company">
+            <i class="bx bx-plus-circle"></i><span>Register company</span>
+          </button>
+          <button data-view="feedbackView" title="Feedback">
+            <i class="bx bx-message-rounded-dots"></i><span>Feedback</span>
+          </button>
+          <button data-view="settingsView" title="Settings">
+            <i class="bx bx-cog"></i><span>Settings</span>
+          </button>
+          <button data-view="profileView" title="Profile">
+            <i class="bx bx-user-circle"></i><span>Profile</span>
+          </button>
+          <button id="sidebarLogoutBtn" class="sidebar-logout" type="button" title="Logout">
+            <i class="bx bx-log-out"></i><span>Logout</span>
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <strong>Company data portal</strong>Google Maps research workspace
+        </div>
+      </aside>
+      <main class="main-area">
+        <header class="topbar">
+          <div class="breadcrumb" aria-label="Breadcrumb">
+            <img src="logo.png" alt="" class="brand-logo" style="width:22px;height:22px;border-radius:4px;vertical-align:middle;margin-right:6px;" />
+            <strong>CompanyLens</strong>
+            <span class="breadcrumb-sep">/</span>
+            <span id="currentViewCrumb" class="breadcrumb-current">Data workspace</span>
+          </div>
+          <div class="topbar-actions">
+            <form id="globalCompanySearch" class="global-search" role="search">
+              <i class="bx bx-search"></i><input id="globalCompanySearchInput" type="search" placeholder="Search companies" aria-label="Search companies" />
+            </form>
+            <details class="notification-menu">
+              <summary aria-label="Notifications" title="Notifications"><i class="bx bx-bell"></i><span class="notification-dot"></span></summary>
+              <div class="notification-panel"><strong>Workspace updates</strong><p>Your dashboard is ready to search and organize company records.</p></div>
+            </details>
+            <label class="language-selector"><i class="bx bx-globe"></i><select id="languageSelector" aria-label="Language"><option value="en">EN</option><option value="hi">HI</option></select></label>
+            <div class="profile">
+            <div class="avatar" id="profileInitial">U</div>
+            <div class="profile-text">
+              <span class="profile-name" id="profileName">User</span
+              ><span class="profile-role">Workspace member</span>
+            </div>
+            <details class="account-menu">
+              <summary aria-label="Account options" title="Account options">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </summary>
+              <div class="account-options">
+                <span class="account-options-label">Account</span>
+                <button id="logoutBtn" type="button">
+                  <i class="bx bx-log-out"></i> Sign out
+                </button>
+              </div>
+            </details>
+            </div>
+          </div>
+        </header>
+        <section id="overviewView" class="view active">
+          <div class="welcome">
+            <div>
+              <h1>Company data, made usable.</h1>
+              <p>
+                Review Google Maps research, validate business details, and keep
+                your company directory current.
+              </p>
+            </div>
+            <button class="primary-button" data-open-register>
+              <i class="bx bx-plus"></i> Register company
+            </button>
+          </div>
+          <div class="metrics">
+            <article class="metric">
+              <div class="metric-top">
+                <span>Total companies</span
+                ><span class="metric-icon"
+                  ><i class="bx bx-buildings"></i
+                ></span>
+              </div>
+              <strong id="companyCount">0</strong
+              ><small>In the company directory</small>
+            </article>
+            <article class="metric">
+              <div class="metric-top">
+                <span>Records displayed</span
+                ><span class="metric-icon"><i class="bx bx-list-ul"></i></span>
+              </div>
+              <strong id="displayedCount">0</strong
+              ><small>First 25 records</small>
+            </article>
+            <article class="metric">
+              <div class="metric-top">
+                <span>Data source</span
+                ><span class="metric-icon"><i class="bx bx-map-alt"></i></span>
+              </div>
+              <strong>Maps</strong><small>Google Maps research</small>
+            </article>
+          </div>
+          <div class="insight">
+            <article class="source-card">
+              <h3>Company research workspace</h3>
+              <p>
+                Use the directory to review companies scraped from Google Maps,
+                then add a missing company and its location directly from this
+                workspace.
+              </p>
+              <span class="source-pill"
+                ><i class="bx bx-map-pin"></i> Location-based company data</span
+              >
+            </article>
+            <article class="quality-card">
+              <h3>Directory coverage</h3>
+              <p>
+                Keep names, contact details, websites, and Maps links together
+                for faster business checks.
+              </p>
+              <div class="progress"><span></span></div>
+            </article>
+          </div>
+          <div class="data-card">
+            <div class="data-head">
+              <div>
+                <h2>Recent companies</h2>
+                <p>Latest records from your company directory</p>
+              </div>
+              <button class="primary-button" data-open-companies>
+                View all companies
+              </button>
+            </div>
+            <div class="table-scroll">
+              <table class="companies-table">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Rating</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                    <th>Email</th>
+                    <th>Profile</th>
+                  </tr>
+                </thead>
+                <tbody id="overviewTableBody"></tbody>
+              </table>
+            </div>
+            <p id="overviewMessage" class="message"></p>
+          </div>
+        </section>
+        <section id="companiesView" class="view">
+          <div class="welcome directory-hero">
+            <div>
+              <span class="eyebrow"><i class="bx bx-buildings"></i> Company intelligence</span>
+              <h1>Company directory</h1>
+              <p>Explore verified company contacts, locations, and official business links in one workspace.</p>
+            </div>
+            <button class="primary-button" data-open-register>
+              <i class="bx bx-buildings"></i> Register company
+            </button>
+          </div>
+          <form id="companySearchForm" class="form-card directory-search-card">
+            <div class="directory-search-heading"><div><h2>Search and scrape companies</h2><p>Search a company name to see existing database matches immediately, then scrape Google Maps and company websites in real time.</p></div><i class="bx bx-search-alt-2"></i></div>
+            <div class="directory-search-fields">
+              <div class="form-field full"><label class="sr-only" for="dashboardSearchName">Company name</label><input id="dashboardSearchName" placeholder="Enter company name to search..." /></div>
+              <div class="form-field"><label class="sr-only" for="dashboardSearchCountry">Country (optional)</label><input id="dashboardSearchCountry" placeholder="Country (optional)" /></div>
+              <div class="form-field"><label class="sr-only" for="dashboardSearchCity">City (optional)</label><input id="dashboardSearchCity" placeholder="City (optional)" /></div>
+              <div class="form-field"><label class="sr-only" for="dashboardSearchType">Company type</label><select id="dashboardSearchType"><option value="">All company types</option><option>IT &amp; Software</option><option>Pharmaceutical &amp; Healthcare</option><option>Manufacturing</option><option>Financial Services</option><option>FinTech</option><option>Consulting</option><option>Corporate / Conglomerates</option><option>Financial Consulting</option><option>E-commerce &amp; Retail</option><option>Telecommunications</option><option>Education &amp; EdTech</option><option>Real Estate &amp; Construction</option><option>Logistics &amp; Transportation</option><option>Energy &amp; Utilities</option><option>Other</option></select></div>
+              <button id="startScrapeBtn" class="primary-button" type="button"><i class="bx bx-search"></i> Search &amp; scrape</button>
+            </div>
+            <div id="databaseMatchNotice" class="database-match-notice" style="display:none;margin-top:10px;padding:9px 13px;border-radius:8px;background:rgba(37,99,235,0.08);color:var(--blue);font-size:13px;font-weight:600;"><i class="bx bx-check-circle" style="vertical-align:middle;margin-right:5px;font-size:16px;"></i><span id="databaseMatchText"></span></div>
+            <p id="scrapeMessage" class="message" aria-live="polite"></p>
+          </form>
+          <div class="data-card">
+            <div class="data-head">
+              <div>
+                <h2>All companies</h2>
+                <p id="rangeLabel">Showing 1–25</p>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table class="companies-table">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Rating</th>
+                    <th>Location</th>
+                    <th aria-label="Open company profile">Profile</th>
+                  </tr>
+                </thead>
+                <tbody id="companyTableBody"></tbody>
+              </table>
+            </div>
+            <p id="companyDataMessage" class="message"></p>
+            <div class="data-footer">
+              <span id="tableCount">0 companies</span
+              ><div class="pager">
+                <button id="previousPage" type="button">Previous</button>
+                <button id="nextPage" type="button">Next</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="analyticsView" class="view">
+          <div class="welcome">
+            <div><span class="eyebrow"><i class="bx bx-line-chart"></i> Company intelligence</span><h1>Directory analytics</h1><p>Understand the quality, coverage, and industry mix of the companies in your workspace.</p></div>
+          </div>
+          <div class="analytics-overview-grid">
+            <article class="analytics-highlight"><span>Companies tracked</span><strong id="analyticsCompanyCount">0</strong><small>Live total from your directory</small></article>
+            <article class="analytics-highlight"><span>Locations indexed</span><strong id="analyticsLocationCount">0</strong><small>Unique business addresses</small></article>
+            <article class="analytics-highlight"><span>Data completeness</span><strong id="analyticsCoverageValue">0%</strong><small>Core company fields recorded</small></article>
+          </div>
+          <div class="analytics-detail-grid">
+            <div class="analytics-industry-stack">
+              <article class="data-card analytics-card"><div class="data-head"><div><h2>Companies by industry</h2><p>Share of directory by industry category</p></div></div><div class="industry-share-layout"><div id="industryDonut" class="industry-donut" role="img" aria-label="Industry distribution"><span></span></div><div id="analyticsIndustryLegend" class="industry-legend"><p class="empty-insight">Industry details will appear as records are added.</p></div></div></article>
+              <article class="data-card analytics-card"><div class="data-head"><div><h2>Top industries</h2><p>Ranked by number of companies in your directory</p></div></div><div id="analyticsIndustryBreakdown" class="top-industries-list"><p class="empty-insight">Industry details will appear as records are added.</p></div></article>
+            </div>
+          </div>
+        </section>
+        <section id="registerView" class="view">
+          <div class="welcome">
+            <div>
+              <h1>Register a company</h1>
+              <p>
+                Add a company that is missing from your current Google Maps
+                data.
+              </p>
+            </div>
+          </div>
+          <form id="addCompanyForm" class="form-card">
+            <h2>Company details</h2>
+            <p>
+              Location is required. All other company details are optional.
+            </p>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="companyName">Company name (optional)</label
+                ><input id="companyName" placeholder="Company name" />
+              </div>
+              <div class="form-field">
+                <label for="companyRating">Rating</label
+                ><input
+                  id="companyRating"
+                  type="number"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  placeholder="e.g. 4.5"
+                />
+              </div>
+              <div class="form-field full">
+                <label for="companyAddress">Company location / address *</label
+                ><input
+                  id="companyAddress"
+                  required
+                  placeholder="Street, city, state, country"
+                />
+              </div>
+              <div class="form-field">
+                <label for="companyPhone">Mobile / phone</label
+                ><input
+                  id="companyPhone"
+                  type="tel"
+                  placeholder="Phone number"
+                />
+              </div>
+              <div class="form-field">
+                <label for="companyEmail">Gmail / email</label
+                ><input
+                  id="companyEmail"
+                  type="email"
+                  placeholder="company@example.com"
+                />
+              </div>
+              <div class="form-field">
+                <label for="companyWebsite">Website</label
+                ><input
+                  id="companyWebsite"
+                  type="url"
+                  placeholder="https://example.com"
+                />
+              </div>
+              <div class="form-field">
+                <label for="companyLinkedin">Company LinkedIn link (optional)</label>
+                <input id="companyLinkedin" type="url" placeholder="https://www.linkedin.com/company/..." />
+              </div>
+            </div>
+            <div class="form-actions">
+              <span class="secondary-text"
+                >Your company will be added to the directory.</span
+              ><button id="saveCompanyBtn" class="primary-button" type="submit">
+                <i class="bx bx-save"></i> Save company
+              </button>
+            </div>
+            <p id="companyFormMessage" class="message"></p>
+          </form>
+        </section>
+        <section id="reportsView" class="view">
+          <div class="welcome">
+            <div>
+              <h1>Reports</h1>
+              <p>Create summary reports from your saved company directory.</p>
+            </div>
+          </div>
+          <div class="form-card">
+            <h2>Reports workspace</h2>
+            <p>
+              Company activity, location coverage, and contact-data reports will
+              appear here as the reporting feature is built.
+            </p>
+          </div>
+        </section>
+        <section id="feedbackView" class="view">
+          <div class="welcome">
+            <div>
+              <h1>Feedback</h1>
+              <p>Share product ideas, report issues, and keep track of feedback.</p>
+            </div>
+          </div>
+          <div class="feedback-layout">
+            <form id="feedbackForm" class="form-card feedback-form">
+              <h2>Add feedback</h2>
+              <p>Tell us what would make the workspace better.</p>
+              <div class="form-grid">
+                <div class="form-field full">
+                  <label for="feedbackType">Feedback type *</label>
+                  <select id="feedbackType" required>
+                    <option value="" selected disabled>Select feedback type</option>
+                    <option>Feature request</option>
+                    <option>Bug report</option>
+                    <option>Data quality</option>
+                    <option>General feedback</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-field full">
+                  <label for="feedbackMessage">Your feedback *</label>
+                  <textarea id="feedbackMessage" required maxlength="1000" placeholder="Describe your idea, issue, or feedback..."></textarea>
+                </div>
+              </div>
+              <div class="form-actions">
+                <span class="secondary-text">Sent securely to your workspace.</span>
+                <button class="primary-button" type="submit"><i class="bx bx-send"></i> Submit feedback</button>
+              </div>
+              <p id="feedbackFormMessage" class="message"></p>
+            </form>
+          </div>
+        </section>
+        <section id="profileView" class="view">
+          <div class="welcome"><div><span class="eyebrow"><i class="bx bx-user-circle"></i> Workspace account</span><h1>Your profile</h1><p>Manage the identity used to access your CompanyLens workspace.</p></div></div>
+          <form id="profileForm" class="form-card profile-editor-card">
+            <div class="profile-editor-heading"><div class="workspace-profile-avatar" id="profileViewInitial">U</div><div><h2 id="profileViewName">User</h2><p id="profileViewEmail">Your account details are securely managed through your workspace.</p><span class="profile-status"><i class="bx bx-check-circle"></i> Active workspace member</span></div></div>
+            <div class="form-grid">
+              <div class="form-field"><label for="profileFullName">Full name</label><input id="profileFullName" required maxlength="80" placeholder="Your name" /></div>
+              <div class="form-field"><label for="profileEmail">Email address</label><input id="profileEmail" type="email" disabled /></div>
+            </div>
+            <div class="form-actions"><span class="secondary-text">Your email address is managed by your sign-in provider.</span><button id="saveProfileBtn" class="primary-button" type="submit"><i class="bx bx-save"></i> Save profile</button></div>
+            <p id="profileMessage" class="message"></p>
+          </form>
+          <section class="profile-details-grid">
+            <article class="form-card profile-detail-card"><i class="bx bx-envelope"></i><div><span>Account email</span><strong id="profileAccountEmail">—</strong></div></article>
+            <article class="form-card profile-detail-card"><i class="bx bx-shield-quarter"></i><div><span>Access level</span><strong>Workspace member</strong></div></article>
+            <article class="form-card profile-detail-card"><i class="bx bx-palette"></i><div><span>Theme preference</span><strong id="profileThemePreference">System</strong></div></article>
+          </section>
+        </section>
+        <section id="settingsView" class="view">
+          <div class="welcome">
+            <div>
+              <h1>Settings</h1>
+              <p>Manage your workspace preferences and company-data options.</p>
+            </div>
+          </div>
+          <div class="form-card">
+            <h2>Workspace preferences</h2>
+            <p>Choose how this browser displays your company directory.</p>
+            <form id="settingsForm" class="settings-form">
+              <label class="setting-row">
+                <span><strong>Show company marks</strong><small>Display generated initials beside company names.</small></span>
+                <input id="showCompanyMarks" type="checkbox" checked />
+              </label>
+              <label class="setting-row">
+                <span><strong>Default page</strong><small>Open this view after you sign in.</small></span>
+                <select id="defaultView"><option value="overviewView">Dashboard</option><option value="companiesView">Companies</option><option value="analyticsView">Analytics</option><option value="registerView">Register company</option></select>
+              </label>
+              <label class="setting-row">
+                <span><strong>Workspace language</strong><small>Choose the language label saved for this browser.</small></span>
+                <select id="workspaceLanguage"><option value="en">English</option><option value="hi">हिन्दी (Hindi)</option></select>
+              </label>
+              <label class="setting-row">
+                <span><strong>Email notifications</strong><small>Receive updates when new company records are available.</small></span>
+                <input id="emailNotifications" type="checkbox" checked />
+              </label>
+              <label class="setting-row">
+                <span><strong>Weekly directory summary</strong><small>Keep this preference saved for planned reporting.</small></span>
+                <input id="weeklySummary" type="checkbox" />
+              </label>
+              <div class="setting-row appearance-row">
+                <span><strong>Appearance</strong><small>Choose light, dark, or your device setting.</small></span>
+                <div class="appearance-options" id="appearanceOptions" aria-label="Appearance preference">
+                  <button type="button" data-theme-choice="light"><i class="bx bx-sun"></i><span>Light</span></button>
+                  <button type="button" data-theme-choice="dark"><i class="bx bx-moon"></i><span>Dark</span></button>
+                  <button type="button" data-theme-choice="system"><i class="bx bx-desktop"></i><span>System</span></button>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button class="primary-button" type="submit"><i class="bx bx-save"></i> Save settings</button>
+                <p id="settingsMessage" class="message"></p>
+              </div>
+            </form>
+          </div>
+          <div class="form-card sync-card">
+            <div>
+              <h2>Company data source</h2>
+              <p>Directory records are sourced from Google Maps research. Refresh to see newly scraped records.</p>
+            </div>
+            <button id="refreshCompanies" class="secondary-button" type="button"><i class="bx bx-refresh"></i> Refresh directory</button>
+          </div>
+          <form id="passwordForm" class="form-card settings-action-card">
+            <div><h2>Security</h2><p>Set a new password for your CompanyLens account.</p></div>
+            <div class="form-grid">
+              <div class="form-field"><label for="newPassword">New password</label><input id="newPassword" type="password" minlength="6" required placeholder="At least 6 characters" /></div>
+              <div class="form-field"><label for="confirmPassword">Confirm new password</label><input id="confirmPassword" type="password" minlength="6" required placeholder="Repeat new password" /></div>
+            </div>
+            <div class="form-actions"><span class="secondary-text">Use a strong password you do not use elsewhere.</span><button id="updatePasswordBtn" class="secondary-button" type="submit"><i class="bx bx-lock-alt"></i> Update password</button></div>
+            <p id="passwordMessage" class="message"></p>
+          </form>
+          <section class="form-card settings-action-card">
+            <div><h2>Export company data</h2><p>Download all company records currently loaded in your directory as a CSV file.</p></div>
+            <div class="form-actions"><span class="secondary-text">Includes contact, location, website, and Google Maps details.</span><button id="exportCompaniesBtn" class="secondary-button" type="button"><i class="bx bx-download"></i> Export CSV</button></div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <div id="logoutDialog" class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="logoutDialogTitle" aria-hidden="true">
+      <div class="confirm-dialog-card">
+        <div class="confirm-dialog-icon"><i class="bx bx-log-out"></i></div>
+        <h2 id="logoutDialogTitle">Log out?</h2>
+        <p>You will need to sign in again to access your CompanyLens workspace.</p>
+        <div class="confirm-dialog-actions">
+          <button id="cancelLogoutBtn" class="secondary-button" type="button">Cancel</button>
+          <button id="confirmLogoutBtn" class="danger-button" type="button"><i class="bx bx-log-out"></i> Confirm logout</button>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { addCompany, getCompanies, searchCompanies, getMapsScrape, getUser, signOut, startMapsScrape, submitFeedback, updateProfile, updateUser } from "./api.js";
+
+      const pageSize = 25;
+      const SETTINGS_STORAGE_KEY = "company-explorer-settings";
+      let companies = [];
+      let currentPage = 0;
+      let selectedCompanyId = null;
+      const views = document.querySelectorAll(".view");
+      const navButtons = document.querySelectorAll(".nav button[data-view]");
+      const mobileMenuButton = document.getElementById("mobileMenuBtn");
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+      function link(value, label) {
+        return value
+          ? `<a href="${escapeHtml(value)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+          : "—";
+      }
+      const VIEW_TITLES = {
+        overviewView: "Data workspace",
+        companiesView: "Companies",
+        analyticsView: "Analytics",
+        reportsView: "Reports",
+        registerView: "Register company",
+        feedbackView: "Feedback",
+        settingsView: "Settings",
+        profileView: "Profile",
+      };
+
+      function showView(id) {
+        views.forEach((view) =>
+          view.classList.toggle("active", view.id === id),
+        );
+        navButtons.forEach((button) =>
+          button.classList.toggle("active", button.dataset.view === id),
+        );
+        const crumbEl = document.getElementById("currentViewCrumb");
+        if (crumbEl && VIEW_TITLES[id]) {
+          crumbEl.textContent = VIEW_TITLES[id];
+        }
+      }
+      function profileAction(company) {
+        const companyId = company.id || company.company_id || "";
+        const mapsLink = company.google_maps_link || "";
+        if (!companyId && !mapsLink) return "—";
+        return `<button class="more-button" type="button" data-company-id="${escapeHtml(companyId)}" data-company-map="${escapeHtml(mapsLink)}"><i class="bx bx-id-card"></i><span>Open profile</span></button>`;
+      }
+      function renderRatingCell(rating) {
+        if (!rating || rating === "N/A") return "—";
+        return `⭐ ${escapeHtml(rating)}`;
+      }
+      function renderRows(rows, targetId) {
+        const body = document.getElementById(targetId);
+        body.innerHTML = rows
+          .map(
+            (company) =>
+              `<tr><td>${companyMark(company)}<span>${escapeHtml(company.company_name)}</span></td><td>${renderRatingCell(company.rating)}</td><td>${escapeHtml(company.address || "N/A")}</td><td>${profileAction(company)}</td></tr>`,
+          )
+          .join("");
+      }
+      function renderOverviewRows(rows) {
+        const body = document.getElementById("overviewTableBody");
+        body.innerHTML = rows.map((company) =>
+          `<tr><td>${companyMark(company)}<span>${escapeHtml(company.company_name)}</span></td><td>${escapeHtml(company.rating || "—")}</td><td>${escapeHtml(company.address || "—")}</td><td>${escapeHtml(company.phone || "—")}</td><td>${link(company.website, "Visit site")}</td><td>${escapeHtml(company.gmail || "—")}</td><td>${profileAction(company)}</td></tr>`
+        ).join("");
+      }
+      function companyType(company) {
+        return company.company_type || company.type || company.category || "";
+      }
+      function companyMark(company) {
+        const name = String(company.company_name || "?").trim();
+        const initials = name.split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+        let hash = 0;
+        for (const character of name) hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+        return `<span class="company-mark mark-${hash % 5}" aria-hidden="true">${escapeHtml(initials)}</span>`;
+      }
+
+      function openCompanyDetails(id, mapsLink) {
+        if (!id && !mapsLink) return;
+        const params = new URLSearchParams();
+        if (id) params.set("id", id);
+        if (mapsLink) params.set("google_maps_link", mapsLink);
+        window.location.href = `company-profile.html?${params.toString()}`;
+      }
+      function locationPart(address, part) {
+        const pieces = String(address || "")
+          .split(",")
+          .map((value) => value.trim())
+          .filter(Boolean);
+        if (!pieces.length) return "";
+        return part === "country" ? pieces.at(-1) : pieces.at(-2) || "";
+      }
+      function countryForAddress(address) {
+        const location = String(address || "").toLowerCase();
+        if (/\bindia\b|\btelangana\b|\bmaharashtra\b|\bkarnataka\b|\btamil nadu\b|\bandhra pradesh\b|\bkerala\b|\bdelhi\b|\bgujarat\b|\brajasthan\b|\bwest bengal\b|\bpunjab\b|\bharyana\b|\buttar pradesh\b|\bbihar\b|\bmadhya pradesh\b|\bodisha\b/.test(location)) {
+          return "India";
+        }
+        return locationPart(address, "country");
+      }
+      function getFilteredCompanies() {
+        const filters = {
+          country: (document.getElementById("dashboardSearchCountry")?.value || "").trim().toLowerCase(),
+          city: (document.getElementById("dashboardSearchCity")?.value || "").trim().toLowerCase(),
+          type: (document.getElementById("dashboardSearchType")?.value || "").trim().toLowerCase(),
+          name: (document.getElementById("dashboardSearchName")?.value || "").trim().toLowerCase(),
+        };
+        return companies.filter((company) =>
+          (!filters.country || countryForAddress(company.address).toLowerCase().includes(filters.country) || String(company.address || "").toLowerCase().includes(filters.country)) &&
+          (!filters.city || locationPart(company.address, "city").toLowerCase().includes(filters.city)) &&
+          (!filters.type || companyType(company).toLowerCase().includes(filters.type)) &&
+          (!filters.name || String(company.company_name || "").toLowerCase().includes(filters.name)),
+        );
+      }
+      function updateMetrics() {
+        const count = companies.length;
+        document.getElementById("companyCount").textContent = count;
+        document.getElementById("displayedCount").textContent = count;
+        document.getElementById("tableCount").textContent =
+          `${count} ${count === 1 ? "company" : "companies"}`;
+        renderDirectoryInsights();
+      }
+
+      function renderDirectoryInsights() {
+        const categoryCounts = new Map();
+        const locations = new Set();
+        let completedFields = 0;
+        const coreFields = ["company_name", "address", "phone", "gmail", "website"];
+        companies.forEach((company) => {
+          const category = companyType(company).trim() || "Uncategorized";
+          categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+          const location = String(company.address || "").trim();
+          if (location) locations.add(location);
+          completedFields += coreFields.filter((field) => String(company[field] || "").trim()).length;
+        });
+        const total = companies.length;
+        const completeness = total ? Math.round((completedFields / (total * coreFields.length)) * 100) : 0;
+        const categories = [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]);
+        const maximum = categories[0]?.[1] || 1;
+        const chartColors = ["#805ad5", "#5b8def", "#2db783", "#f59e0b", "#e76f8c"];
+        const topCategories = categories.slice(0, 5);
+        const analyticsBreakdown = topCategories.length
+          ? topCategories.map(([name, count], index) => {
+              const percentage = Math.round((count / total) * 100);
+              const medal = ["🥇", "🥈", "🥉"][index] || `${index + 1}.`;
+              return `<div class="top-industry-row"><div class="top-industry-title"><span class="industry-medal">${medal}</span><strong>${escapeHtml(name)}</strong><em>${count.toLocaleString()}</em></div><span class="top-industry-bar"><i style="width:${Math.max(6, Math.round((count / maximum) * 100))}%;background:${chartColors[index]}"></i></span><small>${percentage}% of directory</small></div>`;
+            }).join("")
+          : '<p class="empty-insight">Industry details will appear as records are added.</p>';
+        document.getElementById("analyticsCompanyCount").textContent = total.toLocaleString();
+        document.getElementById("analyticsLocationCount").textContent = locations.size.toLocaleString();
+        document.getElementById("analyticsCoverageValue").textContent = `${completeness}%`;
+        document.getElementById("analyticsIndustryBreakdown").innerHTML = analyticsBreakdown;
+        const legend = document.getElementById("analyticsIndustryLegend");
+        const donut = document.getElementById("industryDonut");
+        if (!topCategories.length) {
+          donut.style.background = "var(--line)";
+          donut.querySelector("span").textContent = "0";
+          legend.innerHTML = '<p class="empty-insight">Add company types to see the industry share.</p>';
+          return;
+        }
+        let position = 0;
+        const segments = topCategories.map(([, count], index) => {
+          const nextPosition = position + (count / total) * 100;
+          const segment = `${chartColors[index]} ${position}% ${nextPosition}%`;
+          position = nextPosition;
+          return segment;
+        });
+        if (position < 100) segments.push(`#6b7280 ${position}% 100%`);
+        donut.style.background = `conic-gradient(${segments.join(",")})`;
+        donut.querySelector("span").textContent = total.toLocaleString();
+        legend.innerHTML = topCategories.map(([name, count], index) => `<div><span style="background:${chartColors[index]}"></span><strong>${escapeHtml(name)}</strong><em>${((count / total) * 100).toFixed(1)}%</em></div>`).join("");
+      }
+      function renderCompanies() {
+        const filtered = getFilteredCompanies();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        currentPage = Math.min(currentPage, totalPages - 1);
+        const start = currentPage * pageSize;
+        const pageRows = filtered.slice(start, start + pageSize);
+        renderRows(pageRows, "companyTableBody");
+        renderOverviewRows(companies.slice(0, 5));
+        const rangeLabel = document.getElementById("rangeLabel");
+        rangeLabel.textContent = filtered.length
+          ? `Showing ${start + 1}–${start + pageRows.length} of ${filtered.length}`
+          : "No companies found";
+        document.getElementById("tableCount").textContent = `${filtered.length} ${filtered.length === 1 ? "company" : "companies"}`;
+        document.getElementById("previousPage").disabled = currentPage === 0;
+        document.getElementById("nextPage").disabled = start + pageSize >= filtered.length;
+      }
+      function populateProfile(user) {
+        const name = user.user_metadata?.full_name || user.email || "User";
+        const email = user.email || "Not available";
+        document.getElementById("profileName").textContent = name;
+        document.getElementById("profileInitial").textContent = name.charAt(0).toUpperCase();
+        document.getElementById("profileViewName").textContent = name;
+        document.getElementById("profileViewInitial").textContent = name.charAt(0).toUpperCase();
+        document.getElementById("profileViewEmail").textContent = email;
+        document.getElementById("profileAccountEmail").textContent = email;
+        document.getElementById("profileFullName").value = name;
+        document.getElementById("profileEmail").value = user.email || "";
+        const themeChoice = localStorage.getItem("companies-theme") || "system";
+        document.getElementById("profileThemePreference").textContent = themeChoice.charAt(0).toUpperCase() + themeChoice.slice(1);
+      }
+      async function loadUser() {
+        const { data, error } = await getUser();
+        if (error || !data?.user) {
+          await signOut();
+          window.location.replace("login.html?message=signin");
+          return;
+        }
+        populateProfile(data.user);
+      }
+      async function loadCompanies() {
+        const { data, error } = await getCompanies(1000);
+        const messages = [
+          document.getElementById("companyDataMessage"),
+          document.getElementById("overviewMessage"),
+        ];
+        if (error) {
+          messages.forEach(
+            (message) =>
+              (message.textContent = `Unable to load company data: ${error.message}`),
+          );
+          return;
+        }
+        companies = deduplicateCompanies(data || []);
+        renderCompanies();
+        updateMetrics();
+        if (!companies.length) {
+          messages.forEach((message) => {
+            message.className = "message success";
+            message.textContent =
+              "No companies yet. Register your first company from the dashboard.";
+          });
+        }
+      }
+      function extractPlaceId(url) {
+        if (!url) return "";
+        const m1 = String(url).match(/1s(0x[0-9a-fA-F]+:0x[0-9a-fA-F]+)/);
+        if (m1) return m1[1].toLowerCase();
+        const m2 = String(url).match(/(ChIJ[a-zA-Z0-9_-]+)/);
+        if (m2) return m2[1];
+        return "";
+      }
+      function cleanMapsLink(url) {
+        return String(url || "").split("?")[0].replace(/\/+$/, "").toLowerCase();
+      }
+      function normalizeCompanyName(name) {
+        return String(name || "")
+          .toLowerCase()
+          .replace(/\b(pvt|ltd|llc|inc|private|limited|corp|corporation|co)\b/gi, "")
+          .replace(/[^a-z0-9]/g, "")
+          .trim();
+      }
+      function normalizeAddress(addr) {
+        return String(addr || "").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 30);
+      }
+
+      function deduplicateCompanies(rows) {
+        const seen = new Set();
+        return rows.filter((company) => {
+          const cid = extractPlaceId(company.google_maps_link);
+          const cleanLink = cleanMapsLink(company.google_maps_link);
+          const normName = normalizeCompanyName(company.company_name);
+          const normAddr = normalizeAddress(company.address);
+
+          if (cid && seen.has(`cid:${cid}`)) return false;
+          if (cleanLink && seen.has(`link:${cleanLink}`)) return false;
+          if (normName && normAddr && seen.has(`na:${normName}::${normAddr}`)) return false;
+
+          if (cid) seen.add(`cid:${cid}`);
+          if (cleanLink) seen.add(`link:${cleanLink}`);
+          if (normName && normAddr) seen.add(`na:${normName}::${normAddr}`);
+          return true;
+        });
+      }
+      function readSettings() {
+        try { return JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY)) || {}; } catch { return {}; }
+      }
+      function applySettings() {
+        const settings = readSettings();
+        document.body.classList.toggle("hide-company-marks", settings.showCompanyMarks === false);
+        document.getElementById("showCompanyMarks").checked = settings.showCompanyMarks !== false;
+        document.getElementById("defaultView").value = settings.defaultView || "overviewView";
+        document.getElementById("workspaceLanguage").value = settings.language || localStorage.getItem("company-explorer-language") || "en";
+        document.getElementById("emailNotifications").checked = settings.emailNotifications !== false;
+        document.getElementById("weeklySummary").checked = settings.weeklySummary === true;
+        return settings;
+      }
+
+      navButtons.forEach((button) =>
+        button.addEventListener("click", () => {
+          showView(button.dataset.view);
+          document.querySelector(".sidebar").classList.remove("mobile-menu-open");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
+        }),
+      );
+      mobileMenuButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const sidebar = document.querySelector(".sidebar");
+        const isOpen = sidebar.classList.toggle("mobile-menu-open");
+        mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
+        mobileMenuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+        mobileMenuButton.querySelector("i").className = isOpen ? "bx bx-x" : "bx bx-menu";
+      });
+      document.addEventListener("click", (event) => {
+        const sidebar = document.querySelector(".sidebar");
+        if (sidebar && sidebar.classList.contains("mobile-menu-open") && !sidebar.contains(event.target)) {
+          sidebar.classList.remove("mobile-menu-open");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
+          mobileMenuButton.setAttribute("aria-label", "Open navigation menu");
+          const icon = mobileMenuButton.querySelector("i");
+          if (icon) icon.className = "bx bx-menu";
+        }
+      });
+      document
+        .querySelectorAll("[data-open-register]")
+        .forEach((button) =>
+          button.addEventListener("click", () => showView("registerView")),
+        );
+      document
+        .querySelectorAll("[data-open-companies]")
+        .forEach((button) =>
+          button.addEventListener("click", () => showView("companiesView")),
+        );
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest(".company-open, .more-button");
+        if (button) openCompanyDetails(button.dataset.companyId, button.dataset.companyMap);
+      });
+      document.getElementById("previousPage").addEventListener("click", () => {
+        currentPage -= 1;
+        renderCompanies();
+      });
+      document.getElementById("nextPage").addEventListener("click", () => {
+        currentPage += 1;
+        renderCompanies();
+      });
+      async function logOut() {
+        await signOut();
+        window.location.href = "login.html";
+      }
+      const logoutDialog = document.getElementById("logoutDialog");
+      const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+      function openLogoutDialog() {
+        logoutDialog.classList.add("open");
+        logoutDialog.setAttribute("aria-hidden", "false");
+        confirmLogoutBtn.focus();
+      }
+      function closeLogoutDialog() {
+        logoutDialog.classList.remove("open");
+        logoutDialog.setAttribute("aria-hidden", "true");
+      }
+      document.getElementById("logoutBtn").addEventListener("click", openLogoutDialog);
+      document.getElementById("sidebarLogoutBtn").addEventListener("click", () => {
+        const sidebar = document.querySelector(".sidebar");
+        if (sidebar) sidebar.classList.remove("mobile-menu-open");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+        const icon = mobileMenuButton.querySelector("i");
+        if (icon) icon.className = "bx bx-menu";
+        openLogoutDialog();
+      });
+      document.getElementById("cancelLogoutBtn").addEventListener("click", closeLogoutDialog);
+      confirmLogoutBtn.addEventListener("click", logOut);
+      logoutDialog.addEventListener("click", (event) => { if (event.target === logoutDialog) closeLogoutDialog(); });
+      document.addEventListener("keydown", (event) => { if (event.key === "Escape" && logoutDialog.classList.contains("open")) closeLogoutDialog(); });
+      document.getElementById("profileForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const button = document.getElementById("saveProfileBtn");
+        const message = document.getElementById("profileMessage");
+        button.disabled = true;
+        button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Saving…';
+        const { data, error } = await updateProfile({ fullName: document.getElementById("profileFullName").value.trim() });
+        button.disabled = false;
+        button.innerHTML = '<i class="bx bx-save"></i> Save profile';
+        if (error) {
+          message.className = "message";
+          message.textContent = error.message;
+          return;
+        }
+        populateProfile(data.user || data);
+        message.className = "message success";
+        message.textContent = "Profile updated successfully.";
+      });
+      document.getElementById("passwordForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const password = document.getElementById("newPassword").value;
+        const confirmation = document.getElementById("confirmPassword").value;
+        const message = document.getElementById("passwordMessage");
+        const button = document.getElementById("updatePasswordBtn");
+        if (password !== confirmation) {
+          message.className = "message";
+          message.textContent = "The new passwords do not match.";
+          return;
+        }
+        button.disabled = true;
+        button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Updating…';
+        const { error } = await updateUser({ password });
+        button.disabled = false;
+        button.innerHTML = '<i class="bx bx-lock-alt"></i> Update password';
+        if (error) {
+          message.className = "message";
+          message.textContent = error.message;
+          return;
+        }
+        event.currentTarget.reset();
+        message.className = "message success";
+        message.textContent = "Password updated successfully.";
+      });
+      document.getElementById("exportCompaniesBtn").addEventListener("click", () => {
+        const headers = ["Company", "Rating", "Address", "Phone", "Email", "Website", "Google Maps", "LinkedIn"];
+        const escapeCsv = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
+        const rows = companies.map((company) => [company.company_name, company.rating, company.address, company.phone, company.gmail, company.website, company.google_maps_link, company.linkedin_url].map(escapeCsv).join(","));
+        const csv = [headers.join(","), ...rows].join("\r\n");
+        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "company-explorer-directory.csv";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+      document
+        .getElementById("addCompanyForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const button = document.getElementById("saveCompanyBtn"),
+            message = document.getElementById("companyFormMessage");
+          button.disabled = true;
+          button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Saving…';
+          message.textContent = "";
+          const { error } = await addCompany({
+            company_name: document.getElementById("companyName").value,
+            rating: document.getElementById("companyRating").value,
+            address: document.getElementById("companyAddress").value,
+            phone: document.getElementById("companyPhone").value,
+            gmail: document.getElementById("companyEmail").value,
+            website: document.getElementById("companyWebsite").value,
+            linkedin_url: document.getElementById("companyLinkedin").value,
+          });
+          button.disabled = false;
+          button.innerHTML = '<i class="bx bx-save"></i> Save company';
+          if (error) {
+            message.textContent = error.message;
+            return;
+          }
+          event.currentTarget.reset();
+          message.className = "message success";
+          message.textContent = "Company saved successfully.";
+          await loadCompanies();
+        });
+      function addNewScrapedCompany(newCompany) {
+        if (!newCompany || !newCompany.company_name) return;
+        const cid = extractPlaceId(newCompany.google_maps_link);
+        const cleanLink = cleanMapsLink(newCompany.google_maps_link);
+        const normName = normalizeCompanyName(newCompany.company_name);
+
+        const existing = companies.some((c) => {
+          if (newCompany.id && c.id === newCompany.id) return true;
+          if (cid && extractPlaceId(c.google_maps_link) === cid) return true;
+          if (cleanLink && cleanMapsLink(c.google_maps_link) === cleanLink) return true;
+          const cNormName = normalizeCompanyName(c.company_name);
+          if (normName && normName.length >= 4 && normName === cNormName) return true;
+          return false;
+        });
+
+        if (existing) return;
+
+        // Prepend new company so it appears at the very top of the table
+        companies.unshift(newCompany);
+
+        // Update metrics and re-render the companies table & overview
+        currentPage = 0;
+        renderCompanies();
+        updateMetrics();
+
+        // Highlight newly scraped row in the active view
+        const tableBody = document.getElementById("companyTableBody");
+        const firstRow = tableBody?.querySelector("tr");
+        if (firstRow) {
+          firstRow.classList.add("highlight-scraped-row");
+          setTimeout(() => firstRow.classList.remove("highlight-scraped-row"), 3000);
+        }
+
+        const overviewBody = document.getElementById("overviewTableBody");
+        const overviewRow = overviewBody?.querySelector("tr");
+        if (overviewRow) {
+          overviewRow.classList.add("highlight-scraped-row");
+          setTimeout(() => overviewRow.classList.remove("highlight-scraped-row"), 3000);
+        }
+      }
+
+      async function startCompanySearchAndScrape() {
+        const companyName = document.getElementById("dashboardSearchName").value.trim();
+        const country = document.getElementById("dashboardSearchCountry").value.trim();
+        const city = document.getElementById("dashboardSearchCity").value.trim();
+        const companyType = (document.getElementById("dashboardSearchType")?.value || "").trim();
+        const button = document.getElementById("startScrapeBtn");
+        const message = document.getElementById("scrapeMessage");
+        const matchNotice = document.getElementById("databaseMatchNotice");
+        const matchText = document.getElementById("databaseMatchText");
+
+        if (!companyName && (!country || !city)) {
+          message.className = "message";
+          message.textContent = "Please enter a company name, or country and city to search.";
+          return;
+        }
+
+        // STEP 1: Display matching companies already in database FIRST
+        currentPage = 0;
+        renderCompanies();
+
+        let dbMatches = getFilteredCompanies();
+        if (companyName && (!dbMatches || dbMatches.length === 0)) {
+          // If not in currently loaded pages, query database search endpoint
+          try {
+            const { data: searchResults } = await searchCompanies(companyName);
+            if (Array.isArray(searchResults) && searchResults.length > 0) {
+              for (const r of searchResults) {
+                if (!companies.some((c) => c.id === r.id)) {
+                  companies.push(r);
+                }
+              }
+              renderCompanies();
+              updateMetrics();
+              dbMatches = getFilteredCompanies();
+            }
+          } catch {}
+        }
+
+        if (dbMatches && dbMatches.length > 0) {
+          matchNotice.style.display = "block";
+          matchText.textContent = `Found ${dbMatches.length} matching company record(s) in your database. Displayed above. Now scanning websites for new listings...`;
+        } else {
+          matchNotice.style.display = "none";
+        }
+
+        // STEP 2: Start scraping for candidate companies & websites
+        button.disabled = true;
+        button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Scraping websites…';
+        message.className = "message";
+        message.innerHTML = '<span>Searching Google Maps &amp; scraping websites…</span>';
+
+        const { data: job, error } = await startMapsScrape({ country, city, companyType, companyName });
+        if (error) {
+          button.disabled = false;
+          button.innerHTML = '<i class="bx bx-search"></i> Search &amp; scrape';
+          message.textContent = error.message;
+          return;
+        }
+
+        let sinceIndex = 0;
+        let isComplete = false;
+
+        const updateLiveUI = (progress) => {
+          if (!progress) return;
+          if (progress.status === "queued") {
+            button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Scrape queued…';
+          } else if (progress.status === "running") {
+            button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Scraping websites…';
+          }
+
+          const activity = progress.currentActivity || "Searching Google Maps…";
+          message.className = "message";
+          message.innerHTML = `<div style="display:grid;gap:4px;">` +
+            `<div><strong>Scraping in progress…</strong> Found: <b>${progress.found || 0}</b> | Added: <b style="color:#2db783">${progress.added || 0}</b> | Skipped: <b style="color:#f59e0b">${progress.skipped || 0}</b></div>` +
+            `<div style="font-size:12.5px;color:var(--muted);"><i class="bx bx-loader-alt bx-spin" style="margin-right:5px;"></i>${escapeHtml(activity)}</div>` +
+            `</div>`;
+
+          // STEP 3: Once a website is scraped, display it on the dashboard immediately
+          if (Array.isArray(progress.recentCompanies) && progress.recentCompanies.length > 0) {
+            for (const c of progress.recentCompanies) {
+              addNewScrapedCompany(c);
+            }
+            sinceIndex += progress.recentCompanies.length;
+          }
+        };
+
+        const finishScrape = async (finalProgress) => {
+          if (isComplete) return;
+          isComplete = true;
+          button.disabled = false;
+          button.innerHTML = '<i class="bx bx-search"></i> Search &amp; scrape';
+          if (finalProgress?.status === "completed") {
+            message.className = "message success";
+            message.innerHTML = `<strong>Scrape complete!</strong> Added <b>${finalProgress.added}</b> new companies to dashboard and skipped <b>${finalProgress.skipped}</b> duplicate or existing records.`;
+            await loadCompanies();
+            currentPage = 0;
+            renderCompanies();
+          } else {
+            message.className = "message";
+            message.textContent = finalProgress?.error || "The scrape could not be completed.";
+          }
+        };
+
+        const pollJob = async () => {
+          if (isComplete) return;
+          const { data: progress, error: progressError } = await getMapsScrape(job.id, sinceIndex);
+          if (progressError) {
+            message.textContent = progressError.message;
+            button.disabled = false;
+            button.innerHTML = '<i class="bx bx-search"></i> Search &amp; scrape';
+            return;
+          }
+
+          updateLiveUI(progress);
+
+          if (progress.status === "completed" || progress.status === "failed") {
+            await finishScrape(progress);
+            return;
+          }
+
+          window.setTimeout(pollJob, 800);
+        };
+
+        pollJob();
+      }
+
+      document.getElementById("companySearchForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        startCompanySearchAndScrape();
+      });
+      document.getElementById("startScrapeBtn").addEventListener("click", startCompanySearchAndScrape);
+      ["dashboardSearchCountry", "dashboardSearchCity", "dashboardSearchName"].forEach((id) => {
+        document.getElementById(id)?.addEventListener("input", () => {
+          currentPage = 0;
+          renderCompanies();
+          const matchNotice = document.getElementById("databaseMatchNotice");
+          const query = (document.getElementById("dashboardSearchName")?.value || "").trim();
+          if (query) {
+            const matches = getFilteredCompanies();
+            if (matches.length > 0) {
+              matchNotice.style.display = "block";
+              document.getElementById("databaseMatchText").textContent = `Found ${matches.length} matching company record(s) in your database. Click "Search & scrape" to also scan online websites.`;
+            } else {
+              matchNotice.style.display = "none";
+            }
+          } else {
+            matchNotice.style.display = "none";
+          }
+        });
+      });
+      document.getElementById("dashboardSearchType")?.addEventListener("change", () => {
+        currentPage = 0;
+        renderCompanies();
+      });
+      document.getElementById("globalCompanySearch").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const term = document.getElementById("globalCompanySearchInput").value.trim();
+        document.getElementById("dashboardSearchName").value = term;
+        showView("companiesView");
+        startCompanySearchAndScrape();
+      });
+      const languageSelector = document.getElementById("languageSelector");
+      languageSelector.value = localStorage.getItem("company-explorer-language") || "en";
+      languageSelector.addEventListener("change", () => localStorage.setItem("company-explorer-language", languageSelector.value));
+      document.getElementById("settingsForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const settings = {
+          showCompanyMarks: document.getElementById("showCompanyMarks").checked,
+          defaultView: document.getElementById("defaultView").value,
+          language: document.getElementById("workspaceLanguage").value,
+          emailNotifications: document.getElementById("emailNotifications").checked,
+          weeklySummary: document.getElementById("weeklySummary").checked,
+        };
+        localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+        localStorage.setItem("company-explorer-language", settings.language);
+        languageSelector.value = settings.language;
+        applySettings();
+        const message = document.getElementById("settingsMessage");
+        message.className = "message success";
+        message.textContent = "Settings saved in this browser.";
+      });
+      document.querySelectorAll("#appearanceOptions [data-theme-choice]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const choice = button.dataset.themeChoice;
+          localStorage.setItem("companies-theme", choice);
+          window.dispatchEvent(new CustomEvent("company-theme-change", { detail: choice }));
+          document.getElementById("profileThemePreference").textContent = choice.charAt(0).toUpperCase() + choice.slice(1);
+        });
+      });
+      document.getElementById("refreshCompanies").addEventListener("click", loadCompanies);
+      document.getElementById("feedbackForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const type = document.getElementById("feedbackType").value;
+        const message = document.getElementById("feedbackMessage").value.trim();
+        const formMessage = document.getElementById("feedbackFormMessage");
+        const { error } = await submitFeedback({ type, message });
+        if (error) {
+          formMessage.className = "message";
+          formMessage.textContent = error.message;
+          return;
+        }
+        event.currentTarget.reset();
+        formMessage.className = "message success";
+        formMessage.textContent = "Feedback submitted successfully.";
+      });
+      await loadUser();
+      await loadCompanies();
+      showView(applySettings().defaultView || "overviewView");
+    </script>
+  </body>
+</html>

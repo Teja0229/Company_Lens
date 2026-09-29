@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set new password | CompanyLens</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="theme.js"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="crm-header">
+      <a class="crm-brand" href="index.html" title="CompanyLens Home">
+        <img src="logo.png" alt="CompanyLens Logo" class="crm-brand-logo" />CompanyLens
+      </a>
+      <div class="crm-header-nav">
+        <a class="crm-header-link" href="index.html" title="Go to home page">
+          <i class="bx bx-home-alt"></i><span>Home</span>
+        </a>
+        <a class="crm-header-btn" href="login.html" title="Sign in">
+          <i class="bx bx-log-in"></i><span>Sign in</span>
+        </a>
+      </div>
+    </header>
+    <main class="auth-page">
+      <section class="auth-copy compact-copy">
+        <span class="eyebrow"
+          ><i class="bx bx-lock-open-alt"></i> Secure reset</span
+        >
+        <h1>Create a new password.</h1>
+        <p>
+          Choose a strong password to regain access to your company intelligence
+          workspace.
+        </p>
+        <div class="crm-points">
+          <div class="crm-point">
+            <i class="bx bx-shield-quarter"></i>Your reset link is verified
+            securely
+          </div>
+          <div class="crm-point">
+            <i class="bx bx-check-circle"></i>Return to your dashboard after
+            reset
+          </div>
+        </div>
+      </section>
+      <section class="auth-card">
+        <h2>Set new password</h2>
+        <p>Create a new password for your account.</p>
+        <form id="newPasswordForm">
+          <div class="field">
+            <label for="newpassword">New password</label>
+            <div class="control">
+              <i class="bx bx-lock-alt"></i
+              ><input
+                id="newpassword"
+                type="password"
+                placeholder="At least 6 characters"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm new password</label>
+            <div class="control">
+              <i class="bx bx-check-shield"></i
+              ><input
+                id="confirmPassword"
+                type="password"
+                placeholder="Repeat your new password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+          </div>
+          <button class="primary" id="resetBtn" type="submit">
+            Update password
+          </button>
+          <p class="message" id="message" aria-live="polite"></p>
+        </form>
+        <p class="account-link">
+          <a href="login.html">Sign in</a>
+        </p>
+        <p class="account-link">
+          <a href="index.html"><i class="bx bx-left-arrow-alt"></i> Back to home</a>
+        </p>
+      </section>
+    </main>
+    <script type="module">
+      import { updateUser } from "./api.js";
+      const form = document.getElementById("newPasswordForm"),
+        button = document.getElementById("resetBtn"),
+        message = document.getElementById("message");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const password = document.getElementById("newpassword").value;
+        if (password !== document.getElementById("confirmPassword").value) {
+          message.textContent = "Passwords do not match.";
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "Updating password…";
+        const { error } = await updateUser({ password });
+        if (error) {
+          message.textContent = error.message;
+          button.disabled = false;
+          button.textContent = "Update password";
+          return;
+        }
+        message.className = "message success";
+        message.textContent = "Password updated. Redirecting to sign in…";
+        setTimeout(() => (window.location.href = "login.html"), 1200);
+      });
+    </script>
+  </body>
+</html>

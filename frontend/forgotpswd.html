@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot password | CompanyLens</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="theme.js"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="crm-header">
+      <a class="crm-brand" href="index.html" title="CompanyLens Home">
+        <img src="logo.png" alt="CompanyLens Logo" class="crm-brand-logo" />CompanyLens
+      </a>
+      <div class="crm-header-nav">
+        <a class="crm-header-link" href="index.html" title="Go to home page">
+          <i class="bx bx-home-alt"></i><span>Home</span>
+        </a>
+        <span class="crm-header-text">Remembered it?</span>
+        <a class="crm-header-btn" href="login.html" title="Sign in">
+          <i class="bx bx-log-in"></i><span>Sign in</span>
+        </a>
+      </div>
+    </header>
+    <main class="auth-page">
+      <section class="auth-copy compact-copy">
+        <span class="eyebrow"><i class="bx bx-key"></i> Account recovery</span>
+        <h1>Reset your portal password.</h1>
+        <p>
+          Enter your work email and we’ll send a secure link to reset your
+          CompanyLens password.
+        </p>
+        <div class="crm-points">
+          <div class="crm-point">
+            <i class="bx bx-envelope"></i>Reset link sent to your inbox
+          </div>
+          <div class="crm-point">
+            <i class="bx bx-time-five"></i>Secure link expires automatically
+          </div>
+        </div>
+      </section>
+      <section class="auth-card">
+        <h2>Forgot your password?</h2>
+        <p>We’ll send a reset link to your registered email.</p>
+        <form id="resetRequestForm">
+          <div class="field">
+            <label for="email">Work email</label>
+            <div class="control">
+              <i class="bx bx-envelope"></i
+              ><input
+                id="email"
+                type="email"
+                placeholder="name@company.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+          <button class="primary" id="sendResetBtn" type="submit">
+            Send reset link
+          </button>
+          <p class="message" id="message" aria-live="polite"></p>
+        </form>
+        <p class="account-link">
+          Don’t have an account? <a href="gmailregister.html">Register now</a>
+        </p>
+        <p class="account-link">
+          <a href="index.html"><i class="bx bx-left-arrow-alt"></i> Back to home</a>
+        </p>
+      </section>
+    </main>
+    <script type="module">
+      import { resetPasswordForEmail } from "./api.js";
+      const form = document.getElementById("resetRequestForm"),
+        button = document.getElementById("sendResetBtn"),
+        message = document.getElementById("message");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        button.disabled = true;
+        button.textContent = "Sending link…";
+        const { error } = await resetPasswordForEmail(
+          document.getElementById("email").value.trim(),
+        );
+        button.disabled = false;
+        button.textContent = "Send reset link";
+        if (error) {
+          message.className = "message";
+          message.textContent = error.message;
+          return;
+        }
+        message.className = "message success";
+        message.textContent = "Reset link sent. Check your inbox.";
+      });
+    </script>
+  </body>
+</html>

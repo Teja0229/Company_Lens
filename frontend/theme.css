@@ -1,0 +1,77 @@
+html[data-theme="dark"] { color-scheme:dark; } .theme-toggle { position:fixed; z-index:1000; right:20px; top:20px; display:grid; width:42px; height:42px; place-items:center; border:1px solid #d8e2ec; border-radius:50%; color:#35536f; background:#fff; box-shadow:0 5px 18px rgba(21,40,62,.16); cursor:pointer; font-size:19px; }.theme-toggle:hover { transform:translateY(-2px); } html[data-theme="dark"] body { color:#e4edf6 !important; background:#0e1721 !important; } html[data-theme="dark"] .crm-header,html[data-theme="dark"] .auth-card,html[data-theme="dark"] .mkt-nav,html[data-theme="dark"] .feature-card,html[data-theme="dark"] .stats-strip,html[data-theme="dark"] .stat,html[data-theme="dark"] .mkt-footer,html[data-theme="dark"] .topbar,html[data-theme="dark"] .main-area,html[data-theme="dark"] .view,html[data-theme="dark"] .form-card,html[data-theme="dark"] .profile-summary-card,html[data-theme="dark"] .account-options { color:#e4edf6 !important; background:#142231 !important; border-color:#2b4155 !important; } html[data-theme="dark"] .auth-page,html[data-theme="dark"] .company-profile-page { background:#0e1721 !important; } html[data-theme="dark"] h1,html[data-theme="dark"] h2,html[data-theme="dark"] h3,html[data-theme="dark"] strong,html[data-theme="dark"] .crm-brand,html[data-theme="dark"] .brand-text strong { color:#f4f8fc !important; } html[data-theme="dark"] p,html[data-theme="dark"] label,html[data-theme="dark"] .mkt-nav-links,html[data-theme="dark"] .feature-card p,html[data-theme="dark"] .section-head p,html[data-theme="dark"] .stat span,html[data-theme="dark"] .brand-text small { color:#aabccc !important; } html[data-theme="dark"] input,html[data-theme="dark"] textarea,html[data-theme="dark"] select,html[data-theme="dark"] .provider,html[data-theme="dark"] .btn-outline,html[data-theme="dark"] .btn-social { color:#e4edf6 !important; border-color:#39536a !important; background:#0f1d2a !important; } html[data-theme="dark"] .divider::before,html[data-theme="dark"] .divider::after { background:#39536a !important; } html[data-theme="dark"] .legacy-data-visual { border-color:#2b4155 !important; background:#142231 !important; } html[data-theme="dark"] .legacy-stats strong { color:#90c7f5 !important; } html[data-theme="dark"] .theme-toggle { color:#ffdc7a; border-color:#39536a; background:#142231; } @media (max-width:600px) { .theme-toggle { right:14px; top:14px; width:39px; height:39px; } }
+
+/* Shared high-contrast palette.  Dashboard components also use these tokens. */
+html[data-theme="dark"] {
+  --navy: #f3f7fc;
+  --blue: #74b7ff;
+  --blue-soft: #173759;
+  --canvas: #0b1220;
+  --surface: #132033;
+  --line: #30445c;
+  --muted: #b8c8d9;
+  --green: #63d59c;
+}
+html[data-theme="dark"] .main-area,
+html[data-theme="dark"] .view,
+html[data-theme="dark"] .company-profile-page { background: var(--canvas) !important; }
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] .data-card,
+html[data-theme="dark"] .form-card,
+html[data-theme="dark"] .metric,
+html[data-theme="dark"] .analytics-highlight,
+html[data-theme="dark"] .notification-panel,
+html[data-theme="dark"] .account-options,
+html[data-theme="dark"] .global-search,
+html[data-theme="dark"] .language-selector,
+html[data-theme="dark"] .breadcrumb,
+html[data-theme="dark"] .notification-menu summary,
+html[data-theme="dark"] .account-menu summary { background: var(--surface) !important; border-color: var(--line) !important; }
+html[data-theme="dark"] .sidebar { background: #0c2138 !important; }
+html[data-theme="dark"] .directory-hero { background: linear-gradient(115deg, #132033 20%, #173759) !important; border-color: var(--line) !important; }
+html[data-theme="dark"] .directory-search-card { border-color: var(--line) !important; }
+html[data-theme="dark"] .eyebrow { color: #8cc8ff !important; }
+html[data-theme="dark"] .breadcrumb strong,
+html[data-theme="dark"] .breadcrumb-current,
+html[data-theme="dark"] .profile-name,
+html[data-theme="dark"] .companies-table td:first-child,
+html[data-theme="dark"] .employee-table td:first-child,
+html[data-theme="dark"] .setting-row strong,
+html[data-theme="dark"] .profile-product-name,
+html[data-theme="dark"] .profile-detail-card strong { color: #f3f7fc !important; }
+html[data-theme="dark"] .companies-table th,
+html[data-theme="dark"] .employee-table th,
+html[data-theme="dark"] .directory-filters,
+html[data-theme="dark"] #companiesView .companies-table th:last-child { background: #17283d !important; color: #b8c8d9 !important; }
+html[data-theme="dark"] .companies-table td,
+html[data-theme="dark"] .employee-table td,
+html[data-theme="dark"] #companiesView .companies-table td:last-child,
+html[data-theme="dark"] .feedback-item p,
+html[data-theme="dark"] .filter-field,
+html[data-theme="dark"] .autocomplete-option,
+html[data-theme="dark"] .secondary-text { color: #d1deeb !important; border-color: var(--line) !important; background-color: transparent; }
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-theme="dark"] .filter-field > input,
+html[data-theme="dark"] .filter-field select,
+html[data-theme="dark"] .form-field input,
+html[data-theme="dark"] .form-field textarea,
+html[data-theme="dark"] .form-field select,
+html[data-theme="dark"] .setting-row select,
+html[data-theme="dark"] .clear-filters,
+html[data-theme="dark"] .autocomplete-options { color: #eef5fc !important; background: #0f1b2d !important; border-color: var(--line) !important; }
+html[data-theme="dark"] a,
+html[data-theme="dark"] .companies-table a,
+html[data-theme="dark"] .employee-table a,
+html[data-theme="dark"] .detail-item a { color: #8cc8ff !important; }
+html[data-theme="dark"] .global-theme-button,
+html[data-theme="dark"] .global-theme-options { background: #132033 !important; border-color: var(--line) !important; }
+html[data-theme="dark"] .confirm-dialog-card { background: #132033 !important; border-color: var(--line) !important; }
+html[data-theme="dark"] .confirm-dialog-icon { background: #4a1f2a; color: #ffb4b4; }
+html[data-theme="dark"] .crm-header-link { color: #b8c8d9 !important; }
+html[data-theme="dark"] .crm-header-link:hover { background: #1c2e44 !important; color: #fff !important; }
+html[data-theme="dark"] .crm-header-btn { background: #17283c !important; border-color: #30445c !important; color: #8cc8ff !important; }
+html[data-theme="dark"] .crm-header-btn:hover { background: #1e3550 !important; border-color: #74b7ff !important; color: #b8dcff !important; }
+html[data-theme="dark"] .crm-header-text { color: #8ea1b5 !important; }
+html[data-theme="dark"] .crm-brand-mark,
+html[data-theme="dark"] .crm-brand > span:first-child { background: #173759 !important; color: #74b7ff !important; }

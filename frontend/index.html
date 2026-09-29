@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CompanyLens — Discover, analyze, and connect</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script>(() => { const choice = localStorage.getItem('companies-theme') || 'system'; document.documentElement.dataset.theme = choice === 'dark' || (choice === 'system' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; })();</script>
+  </head>
+  <body>
+    <nav class="mkt-nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="CompanyLens Logo" class="brand-logo" />
+        <span class="brand-text">
+          <strong>CompanyLens</strong>
+          <small>Discover · Analyze · Connect</small>
+        </span>
+      </a>
+      <div class="mkt-nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#stats">Data</a>
+      </div>
+      <div class="mkt-nav-actions">
+        <div class="theme-menu">
+          <button class="theme-btn" id="themeBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            <span id="themeIcon">🖥</span>
+            <span id="themeLabel">System</span>
+          </button>
+          <div class="theme-dropdown" id="themeDropdown">
+            <button class="theme-option" data-theme-choice="light">☀️ Light</button>
+            <button class="theme-option" data-theme-choice="dark">🌙 Dark</button>
+            <button class="theme-option" data-theme-choice="system">🖥 System</button>
+          </div>
+        </div>
+        <a href="login.html" class="btn-outline">Log in</a>
+        <a href="gmailregister.html" class="btn-solid">Get started</a>
+      </div>
+    </nav>
+    <main>
+      <header class="hero">
+        <span class="eyebrow">Company intelligence platform</span>
+        <h1>Discover, analyze, and <span>connect</span> with companies</h1>
+        <p>Search structured business data pulled from thousands of sources, filter by industry and location, and see every company on the map — in one clean dashboard.</p>
+        <div class="hero-actions">
+          <a href="gmailregister.html" class="btn-solid">Get started</a>
+          <a href="login.html" class="btn-outline">Log in</a>
+        </div>
+      </header>
+      <section class="section" id="how-it-works">
+        <div class="section-head">
+          <h2>How CompanyLens works</h2>
+          <p>From a search to a downloadable record, in six steps.</p>
+        </div>
+        <div class="flow-grid">
+          <article class="flow-card"><span class="flow-num">1</span><span class="feature-icon">→</span><h3>Search company</h3><p>Enter a company name to find matching records in the database.</p></article>
+          <article class="flow-card"><span class="flow-num">2</span><span class="feature-icon">⌕</span><h3>Instant database match</h3><p>Existing matches appear on your dashboard instantly before scraping.</p></article>
+          <article class="flow-card"><span class="flow-num">3</span><span class="feature-icon">⌖</span><h3>Scan &amp; scrape websites</h3><p>Each website is scraped sequentially for contacts and team details.</p></article>
+          <article class="flow-card"><span class="flow-num">4</span><span class="feature-icon">▣</span><h3>Live dashboard update</h3><p>As each website is scraped, it immediately displays on the dashboard.</p></article>
+          <article class="flow-card"><span class="flow-num">5</span><span class="feature-icon">↓</span><h3>Export the data</h3><p>Download full company records, contacts, and addresses as CSV.</p></article>
+          <article class="flow-card"><span class="flow-num">6</span><span class="feature-icon">+</span><h3>Register if missing</h3><p>Add custom company details and locations directly from your workspace.</p></article>
+        </div>
+      </section>
+      <section class="section" id="features">
+        <div class="section-head">
+          <h2>Built for company discovery</h2>
+          <p>Everything you need to search, track, and understand company data.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><span class="feature-icon">▣</span><h3>Live dashboard</h3><p>KPI cards for total companies, industries, and recent additions — calculated from real data.</p></article>
+          <article class="feature-card"><span class="feature-icon">≡</span><h3>Search and filters</h3><p>Filter by industry, location, source, or company type. Table or card view, your choice.</p></article>
+          <article class="feature-card"><span class="feature-icon">◐</span><h3>Light and dark theme</h3><p>Choose light, dark, or system theme, and keep your preference across sessions.</p></article>
+          <article class="feature-card"><span class="feature-icon">↓</span><h3>Exportable reports</h3><p>Generate industry, location, or full-dataset reports whenever you need them.</p></article>
+        </div>
+      </section>
+      <section class="market-section" id="stats">
+        <div class="market-card">
+          <span class="label">External market data — not your dataset</span>
+          <h3>India’s tech landscape, for context</h3>
+          <p>These figures describe the national market, not the companies in your own database. Dashboard KPI cards always reflect your scraped and registered data separately.</p>
+          <div class="market-grid">
+            <div class="market-stat"><strong>40,000+</strong><span>Technology firms</span></div>
+            <div class="market-stat"><strong>5.8M</strong><span>IT/tech employees</span></div>
+            <div class="market-stat"><strong>$283B</strong><span>Industry revenue, FY2025</span></div>
+            <div class="market-stat"><strong>32,000+</strong><span>Tech startups</span></div>
+            <div class="market-stat"><strong>1,750+</strong><span>Global Capability Centers</span></div>
+            <div class="market-stat"><strong>$224.4B</strong><span>IT exports, FY2025</span></div>
+          </div>
+          <p class="market-note">Sources: NASSCOM FY2025 industry estimates; Startup India national dataset; NITI Aayog and PIB sector reports. Figures are approximate and change as reports update.</p>
+        </div>
+      </section>
+      <section class="cta-band">
+        <h2>Ready to explore companies?</h2>
+        <p>Create your account and start searching in under a minute.</p>
+        <a href="gmailregister.html" class="btn-solid">Get started</a>
+      </section>
+    </main>
+    <footer class="mkt-footer">
+      <span>© 2026 CompanyLens. All rights reserved.</span>
+      <div>
+        <a href="login.html">Log in</a>
+        <a href="gmailregister.html">Sign up</a>
+        <a href="#features">Features</a>
+      </div>
+    </footer>
+    <script>
+      const key = 'companies-theme', root = document.documentElement, button = document.getElementById('themeBtn'), menu = document.getElementById('themeDropdown'), meta = { light: ['☀️', 'Light'], dark: ['🌙', 'Dark'], system: ['🖥', 'System'] }, query = matchMedia('(prefers-color-scheme: dark)');
+      function apply(choice) {
+        const theme = choice === 'system' ? (query.matches ? 'dark' : 'light') : choice;
+        root.dataset.theme = theme;
+        document.getElementById('themeIcon').textContent = meta[choice][0];
+        document.getElementById('themeLabel').textContent = meta[choice][1];
+        document.querySelectorAll('.theme-option').forEach(item => item.classList.toggle('active', item.dataset.themeChoice === choice));
+      }
+      apply(localStorage.getItem(key) || 'system');
+      query.addEventListener('change', () => { if ((localStorage.getItem(key) || 'system') === 'system') apply('system'); });
+      button.addEventListener('click', event => { event.stopPropagation(); menu.classList.toggle('open'); button.setAttribute('aria-expanded', menu.classList.contains('open')); });
+      document.querySelectorAll('.theme-option').forEach(item => item.addEventListener('click', () => {
+        localStorage.setItem(key, item.dataset.themeChoice);
+        apply(item.dataset.themeChoice);
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+      }));
+      document.addEventListener('click', () => { menu.classList.remove('open'); button.setAttribute('aria-expanded', 'false'); });
+    </script>
+  </body>
+</html>
