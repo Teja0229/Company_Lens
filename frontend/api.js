@@ -2,7 +2,7 @@ const SESSION_STORAGE_KEY = "dashboard-session";
 const LOCAL_BACKEND_ORIGIN =
   /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname) && window.location.port !== "5000"
     ? "http://localhost:5000"
-    : "";
+    : "https://company-lens.onrender.com";
 
 async function request(url, options = {}) {
   const session = getSession();
