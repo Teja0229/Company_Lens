@@ -106,7 +106,7 @@ async function handleOAuthLogin(rawProvider, req, res) {
     return res.status(400).json({ error: "This sign-in provider is not available." });
   }
 
-  const redirectTo = `${req.protocol}://${req.get("host")}/login.html`;
+  const redirectTo = "https://companymaps.vercel.app/login.html";
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: { redirectTo },
